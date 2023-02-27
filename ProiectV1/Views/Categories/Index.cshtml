@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Lista categorii";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />  
+@if(ViewBag.Message != null){
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@foreach (var category in ViewBag.Categories)
+{
+    <div class="card-body border">
+        @Html.Label("CategoryName", "Denumire categorie")
+        <p>@category.CategoryName</p>
+
+        <div class="d-flex justify-content-between flex-row mt-3 mb-3">
+            <a class="btn btn-success" href="/Categories/Show/@category.Id">Afisare categorie</a>
+        </div>
+    </div>
+    
+}
+<br />
+
+
+

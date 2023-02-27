@@ -1,0 +1,22 @@
+﻿@model ProiectV1.Models.Profile
+
+
+<h2 class="text-center mt-5">Editare rol profil</h2>
+<br />
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            
+             <form  asp-controller="Profiles" aspaction="EditRoll/@Model.Id">
+               
+                <label>Selectati Rolul</label>
+                @Html.DropDownListFor(m => m.RoleId,
+                new SelectList(Model.AllRoles, "Value", "Text"),
+                "Selectati Rolul", new { @class = "form-control" })
+                <br />
+                <button class="btn btn-sm btn-success" type="submit">Modifica roll</button>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@if(ViewBag.Message != null){
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+<div class="input-group m-3 widthMax d-flex flex- justify-content-between" >
+    <form method="GET" style=" width:80%">
+        <div class="input-group mb-3 SearchStile">
+            <input type="text" class="form-control no-outline-on-focus" placeholder="Search topics or keywords" name="search"
+                   value="@ViewBag.SearchString" style="border:none;">
+            <button class="btn no-outline-on-focus"  type="submit"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+
+    <div class="dropdown mt-2">
+    
+      <button onclick="myFunction()" class="dropbtn btn btn-outline-success bg-color1">Filtre</button>
+      <div id="myDropdown" class="dropdown-content">
+        <form method="GET">
+        
+            <div class="flex-column p-2">
+                <div class="d-flex flex-row justify-content-between widthMax">
+                    <p>Sortare in functie de pret</p>
+                    <div>
+                        @if (ViewBag.sortPret == "asc")
+                        {
+                            <input type="radio" name="sortPret" value="asc" id="sortPretAsc" style="display:none;"  checked/> 
+                        }else{
+                            <input type="radio" name="sortPret" value="asc" id="sortPretAsc" style="display:none;"  />
+                        }
+                        <label for="sortPretAsc">
+                                <i class="bi bi-arrow-up-square"></i>
+                        </label>
+
+                        @if (ViewBag.sortPret == "desc")
+                        {
+                                <input type="radio" name="sortPret" value="desc" id="sortPretDesc" style="display:none;" checked/>
+                        }else{
+                            <input type="radio" name="sortPret" value="desc" id="sortPretDesc" style="display:none;" />
+                        }
+                        <label for="sortPretDesc">
+                                <i class="bi bi-arrow-down-square"></i>
+                        </label>
+
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-between widthMax">
+                    <p>Sortare in functie de nr stele</p>
+                    <div>
+                            @if (ViewBag.sortStele == "asc")
+                        {
+                            <input type="radio" name="sortStele" value="asc" id="sortSteleAsc" style="display:none;"  checked/> 
+                        }else{
+                            <input type="radio" name="sortStele" value="asc" id="sortSteleAsc" style="display:none;"  />
+                        }
+                        <label for="sortSteleAsc">
+                                <i class="bi bi-arrow-up-square "></i>
+                        </label>
+
+                        @if (ViewBag.sortStele == "desc")
+                        {
+                                <input type="radio" name="sortStele" value="desc" id="sortSteleDesc" style="display:none;" checked/>
+                        }else{
+                            <input type="radio" name="sortStele" value="desc" id="sortSteleDesc" style="display:none;" />
+                        }
+                        <label for="sortSteleDesc">
+                                <i class="bi bi-arrow-down-square"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around widthMax mb-1">
+            <button class="btn btn-outline-success bg-color1" type="submit"><i class="bi bi-search"></i>Filter</button>
+            <button class="btn btn-outline-success bg-color1" type="button" id="reset" onclick="Reset()"><i class="bi bi-arrow-clockwise"></i>Reset</button>
+            </div>    
+        
+        </form>
+      </div>
+    </div>
+</div>
+
+<div class="d-flex flex-row flex-wrap justify-content-center ">
+    @foreach (ProiectV1.Models.Product product in ViewBag.Products)
+    {
+        <div class="card shadowCustom m-3" style="width: 20vw; height:50vh; position: relative; overflow: auto;" onclick="window.location.href = '/Products/Show/@product.Id';">
+            <img class="card-img-top" src="@product.Photo" alt="Poza" style="height:40%">
+            <div class="card-body border">
+                <h3 class="card-title bg-color2 py-3 px-3 rounded-2 text-center">@product.Title</h3>
+
+                <div><i class="bi bi-globe"></i> @product.Category.CategoryName</div>
+                
+                @{
+                //stele
+                }
+                @for ( var i = 1; i <=product.Stars ; i++)
+                {
+                    <img style ="height:25px;width:25px;"  src="~/DesignImg/Star.png"/>
+                }
+                @if(product.Stars - Math.Floor(product.Stars)!=0){
+                    @if (product.Stars - Math.Floor(product.Stars) <= 0.25) {
+                        <img style ="height:25px;width:6px;"  src="~/DesignImg/quarterStar.png"/>
+                    }
+                    else{
+                        if (product.Stars - Math.Floor(product.Stars) <= 0.50)
+                        {
+                            <img style ="height:25px;width:13px;"  src="~/DesignImg/halfStar.png"/>
+                        }
+                        else
+                        {
+                            <img style ="height:25px;width:18px;"  src="~/DesignImg/3quarterStar.png"/>
+                        }
+                    }
+                }
+
+                
+
+                <div class="d-flex justify-content-between flex-row mt-3 mb-3" >
+
+                    <button class="btn btn-success" onclick="AddToCart(@product.Id)"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+                    <div class="card-text text-center">@product.Price $</div>
+
+                </div>
+            </div>
+        </div>
+        
+
+    }
+</div>
+
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if (ViewBag.currentPage >= 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.currentPage-1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            }
+
+                
+                
+            <li class="page-item "> <a class="page-link" href="@ViewBag.PaginationBaseUrl=@ViewBag.currentPage">@(ViewBag.currentPage+1)</a> </li>
+             
+            @if (ViewBag.currentPage != ViewBag.lastPage)
+            {
+                
+                <li class="page-item">
+                    <a class="page-link" href="@ViewBag.PaginationBaseUrl=@(ViewBag.currentPage+1)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            }
+        </ul>
+    </nav>
+</div>

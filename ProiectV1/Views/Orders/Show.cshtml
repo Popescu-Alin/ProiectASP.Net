@@ -1,0 +1,56 @@
+﻿@model ProiectV1.Models.Order
+
+<div class="card">
+
+    <div class="card-header">
+        <div><i class="bi bi-person"></i>@Model.User.UserName</div>
+        <div class="d-flex flex-row justify-content-around">
+            <p> Codul comezii este @Model.Id</p>
+            <p>Suma Totala A comenzii @Model.TotalSum</p>
+            <p>@Model.Date</p>
+        </div>
+    </div>
+
+    <div class="card-body">
+
+        @foreach(var prodOrd in ViewBag.products)
+        {   
+            <div class="card my-2" >
+                <div class="d-flex flex-row" style="height:20vh;overflow: auto;">
+                    
+                    <img class="card-img card-img-responsive" src="@prodOrd.Product.Photo" alt="Poza" style="max-width:20vw">
+                    
+                    <div class="card-body">
+
+                        <p>Cantitate @prodOrd.Quantity</p>
+
+                        <p>Pret @prodOrd.Product.Price</p>
+                
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-success" href="/Products/Show/@prodOrd.ProductId">Afisare produs</a>
+                </div>
+
+            </div>
+            
+        }
+
+    </div>
+
+   
+    @if (ViewBag.Cancel)
+    {
+        <div class="card-footer">
+            <form method="post" action="/Orders/Delete/@Model.Id">
+
+                    <button class="btn btn-danger" type="submit">Sterge Comanda</button>
+
+                </form>
+        </div>
+    }
+    
+
+
+</div>
+

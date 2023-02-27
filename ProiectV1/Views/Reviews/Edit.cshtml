@@ -1,0 +1,25 @@
+﻿@model ProiectV1.Models.Review
+
+@{
+    ViewBag.Title = "Editare review";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm(controllerName: "Reviews", actionName: "Edit", method: FormMethod.Post, 
+            routeValues: new { id = Model.Id }))
+    {
+        @Html.Label("Content", "Continutul review-ului")
+        <br />
+        @Html.Editor("Content", new { @class = "form-control" })
+        <br />
+
+        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "text-danger" })
+        <br />
+
+        <br />
+
+        <button class="btn btn-success" type="submit">Modifica categoria</button>
+    }
+    

@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Lista Comenzi";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />  
+@if(ViewBag.Message != null){
+    <h2 class="alert-success p-3 rounded-3 text-center mb-5">@ViewBag.Message</h2>
+}
+
+@foreach (var order in ViewBag.Orders)
+{
+    <div class="card border m-2">
+        <div class="card-header">
+             <div><i class="bi bi-person"></i>@order.User.UserName</div>
+        </div>
+        <div class="card-body">
+            @Html.Label("Id", "cod comanda")
+            <p>@order.Id</p>
+
+             @Html.Label("TotalSum", "pret")
+            <p>@order.TotalSum</p>
+
+            @Html.Label("Address", "Adresa")
+            <p>@order.Address</p>
+
+        </div>
+        
+         @if( order.Date.AddDays(1) > DateTime.Now)
+         {
+            <div class="card-footer d-flex justify-content-around flex-row mt-3 ">
+                <a class="btn btn-outline-success" href="/Orders/Show/@order.Id">Afisare Comanda</a>
+           
+                <form method="post" action="/Orders/Delete/@order.Id">
+                        <button class="btn btn-danger" type="submit">Sterge Comanda</button>
+                </form>
+            
+            </div>
+        }
+        else
+        {
+            <div class="card-footer d-flex justify-content-center flex-row mt-3 ">
+                <a class="btn btn-outline-success" href="/Orders/Show/@order.Id">Afisare Comanda</a>
+
+            </div>
+        }
+
+    </div>
+    
+}
+<br />

@@ -1,0 +1,198 @@
+body {
+    background-color:  #f1f1f1;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+input[type=radio]:checked + label > img {
+    border: 1px solid #FFD700;
+    border-radius: 15px;
+    box-shadow: 0 0 3px 3px #FFDE2E;
+}
+
+input[type=radio]:checked + label > i {
+   
+    background-color: #FFD700;
+}
+
+.curentPage {
+    color:aquamarine;
+    
+}
+
+
+
+
+
+
+
+
+
+.dropbtn {
+    cursor: pointer;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 15vw;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+
+
+
+.show {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+.shadowCustom {
+    box-shadow: none;
+    transition:  2s;
+}
+.shadowCustom:hover {
+    box-shadow: 0px 8px 16px 0px rgba(78, 90, 199,0.7);
+}
+
+
+
+.widthMax {
+    width: 100%;
+}
+
+
+
+
+
+.btn-success {
+    background-color: #ffffff;
+    color: darkorchid;
+    border-color: darkorchid;
+    transition:1s;
+}
+
+.btn-success:hover ,.btn-success:focus{
+    background-color: rgba(78, 90, 199,0.5);
+    color: #ffffff;
+    border-color: darkorchid;
+    outline:none;
+    box-shadow:0px 8px 16px 0px rgba(78, 90, 199,0.7)
+}
+
+.btn-outline-success {
+    background-color: #ffffff;
+    color: darkorchid;
+    border-color: darkorchid;
+    transition: 1s;
+}
+
+.btn-outline-success:hover, .btn-outline-success:focus {
+    background-color: rgba(78, 90, 199,0.5);
+    color: #ffffff;
+    border-color: darkorchid;
+    outline: none;
+    box-shadow: 0px 8px 16px 0px rgba(78, 90, 199,0.7)
+}
+
+
+.bg-color1 {
+    background-color: #f1f1f1;
+}
+
+.bg-color2 {
+    background-color: #ffffff;
+}
+
+.card-footer,.card-header{
+    background-color: #ffffff;
+}
+
+.card-body {
+    background-color: #ffffff;
+    
+}
+
+.card {
+    border: solid transparent;
+    background: linear-gradient(white, white) padding-box, linear-gradient(to right, darkblue, darkorchid) border-box;
+}
+
+.SearchStile {
+    border: solid transparent;
+    background: linear-gradient(white, white) padding-box, linear-gradient(to right, darkblue, darkorchid) border-box;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+
+
+.no-outline-on-focus:focus {
+    outline: none;
+}
+
+.text-style {
+    color: darkorchid;
+}
+
+.text-style2 {
+    color: darkorchid;
+    text-align:center;
+    
+}
+
+
+.btn-danger {
+    background-color: #ffffff;
+    color: #900C3F;
+    border-color: #900C3F;
+    transition: 1s;
+}
+.btn-danger:hover, .btn-danger:focus {
+    background-color: rgba(144, 12, 63 ,0.5);
+    color: #ffffff;
+    border-color: #900C3F;
+    outline: none;
+    box-shadow: 0px 8px 16px 0px rgba(200,0,0,0.7)
+}
+
+p,div {
+    color: darkorchid;
+}
+
